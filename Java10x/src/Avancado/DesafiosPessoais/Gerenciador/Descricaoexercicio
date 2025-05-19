@@ -1,0 +1,35 @@
+Exercicio Java
+Objetivo:
+-- Desenvolver um sistema simples para gerenciar tarefas com funcionalidades que simulam o básico de um sistema empresarial de produtividade
+— algo muito comum em softwares corporativos, CRMs, ferramentas de workflow, etc
+
+Descrição:
+-- Funcionalidades principais:
+Cadastro de tarefa e manipulação
+
+==========================================
+// caracteristicas das tarefas
+
+1 - Título - Obrigatorio
+2 - Descrição - Obrigatorio
+3 - Data de vencimento (usando LocalDate)
+4 - Prioridade (Alta, Média, Baixa) - Obrigatorio
+5 - Status (Pendente, Em andamento, Concluída)
+
+===========================================
+// comportamento do programa
+
+1 - Listar tarefas
+2 - Ordenar por data ou prioridade
+3 - Filtrar por status
+4 - Editar tarefa
+5 - Remover tarefa
+Marcar como concluída
+
+==========================================
+// finalizaçao programa
+Salvar e carregar tarefas de um arquivo .json ou .csv
+(Opcional) Interface com Swing, JavaFX ou mesmo API REST com Spring Boot (nível um pouco acima, mas muito útil no mercado)
+
+==========================================
+Objetivo de aprender a fazer uma documentação, mesmo sendo basica, ou incompleta
