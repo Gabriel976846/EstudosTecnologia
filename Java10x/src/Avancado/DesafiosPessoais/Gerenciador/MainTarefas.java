@@ -199,13 +199,13 @@ public class MainTarefas {
                         System.out.println("Tem apenas uma tarefa registrada");
                         listatarefas.forEach(System.out::println);
                     } else {
-                        System.out.println("Deseja ver as Tarefas por: \n1- Data \n2- Prioridade \n3 - Status");
+                        System.out.println("Deseja ver as Tarefas por: \n1 - Data \n2 - Prioridade \n3 - Status");
                         System.out.println("Escolha: ");
                         int escolhavisualizacaotarefa = caixadeentrada.nextInt();
 
                         switch (escolhavisualizacaotarefa){
                             case 1:
-
+                                
                             break;
                         }
                     }
