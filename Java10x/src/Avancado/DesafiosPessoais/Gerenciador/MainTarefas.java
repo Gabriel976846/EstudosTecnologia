@@ -2,14 +2,12 @@ package Avancado.DesafiosPessoais.Gerenciador;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class MainTarefas {
     public static void main(String[] args) {
         Scanner caixadeentrada = new Scanner(System.in);
-        List<TarefasCaracteristicas> listatarefas = new ArrayList<>();
+        List<TarefasCaracteristicas> listatarefas = new LinkedList<>();
 
         while (true) {
             System.out.println("======= Gerenciador de Tarefas =======");
@@ -195,19 +193,26 @@ public class MainTarefas {
                     }
                     break;
                 case 3:
-                    if (listatarefas.isEmpty()) {
-                        System.out.println("========================");
-                        System.out.println("Não tem tarefas armazenadas");
+                    if (listatarefas.isEmpty()){
+                        System.out.println("Lista vazia");
+                    } else if (listatarefas.size() == 1) {
+                        System.out.println("Tem apenas uma tarefa registrada");
+                        listatarefas.forEach(System.out::println);
                     } else {
-                        System.out.println("==== Tarefas Cadastradas ====");
-                        List<String> posicaotarefas = IntStream.range(0, listatarefas.size())
-                                .mapToObj(i -> (i + 1) + " - " + listatarefas.get(i).getTitulo())
-                                .toList();
-                        posicaotarefas.forEach(System.out::println);
+                        System.out.println("Deseja ver as Tarefas por: \n1- Data \n2- Prioridade \n3 - Status");
+                        System.out.println("Escolha: ");
+                        int escolhavisualizacaotarefa = caixadeentrada.nextInt();
+
+                        switch (escolhavisualizacaotarefa){
+                            case 1:
+
+                            break;
+                        }
                     }
+
                     break;
                 case 4:
-                    System.out.println("Qual tarefa deseja deseja?");
+                    System.out.println("Qual tarefa deseja editar?");
                     List<String> posicaotarefas = IntStream.range(0, listatarefas.size())
                             .mapToObj(i -> (i + 1) + " - " + listatarefas.get(i).getTitulo())
                             .toList();
@@ -228,7 +233,9 @@ public class MainTarefas {
                             int escolhaedicaoinformacaodatarefa = caixadeentrada.nextInt();
 
                             switch (escolhaedicaoinformacaodatarefa) {
+
                                 case 1:
+                                    caixadeentrada.nextLine();
                                     System.out.print("Titulo Novo:  ");
                                     String novotitulo = caixadeentrada.nextLine().trim().replaceAll("\\s+", "").toUpperCase();
 
@@ -252,11 +259,50 @@ public class MainTarefas {
                                 case 3:
                                     System.out.println("Digite a nova data, não digite /");
                                     System.out.print("Nova data: ");
-                                    String novadata = caixadeentrada.nextLine();
+                                    String novadata = caixadeentrada.nextLine().trim().replaceAll("\\s+", "");
                                     listatarefas.get(escolhatarefaedicao).setDataVencimento(LocalDate.parse(novadata, DateTimeFormatter.ofPattern("ddMMyyyy")));
                                 break;
                                 case 4:
+                                    System.out.println("Escolha a nova prioridade da Tarefa:");
+                                    System.out.println("Prioridade: \n1 - Alta \n2 - Media \n3 - Baixa");
+                                    System.out.print("Escolha: ");
+                                    int novaprioridade = caixadeentrada.nextInt();
 
+                                    switch (novaprioridade){
+                                        case 1:
+                                            listatarefas.get(escolhatarefaedicao).setPrioridadeTarefa("alta");
+                                        break;
+                                        case 2:
+                                            listatarefas.get(escolhatarefaedicao).setPrioridadeTarefa("media");
+                                        break;
+                                        case 3:
+                                            listatarefas.get(escolhatarefaedicao).setPrioridadeTarefa("baixa");
+                                        break;
+                                    }
+                                break;
+                                case 5:
+                                    System.out.println("Escolha a nova condição de Status da tarefa");
+                                    System.out.println("Status \n1- Concluida \n2 - Andamento \n3 - Pendente");
+                                    System.out.print("Escolha: ");
+                                    int escolhanovostatus = caixadeentrada.nextInt();
+
+                                    switch (escolhanovostatus){
+                                        case 1:
+                                            listatarefas.get(escolhatarefaedicao).setStatusConclusao("CONCLUIDO");
+                                        break;
+                                        case 2:
+                                            listatarefas.get(escolhatarefaedicao).setStatusConclusao("ANDAMENTO");
+                                        break;
+                                        case 3:
+                                            listatarefas.get(escolhatarefaedicao).setStatusConclusao("PENDENTE");
+                                        break;
+                                        default:
+                                            listatarefas.get(escolhatarefaedicao).setStatusConclusao("DEFINIR");
+                                        break;
+                                    }
+                                break;
+                                default:
+                                    System.out.println("Digite uma escolha valida");
                                 break;
                             }
                         }

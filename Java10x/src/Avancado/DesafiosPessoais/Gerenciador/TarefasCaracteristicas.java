@@ -12,9 +12,11 @@ public abstract class TarefasCaracteristicas {
     public TarefasCaracteristicas(String titulo, String descricao, String dataVencimentostring, String prioridadeTarefastring,  String statusConclusaostring) {
         Titulo = titulo;
         Descricao = descricao;
-        this.DataVencimento = LocalDate.parse(dataVencimentostring, DateTimeFormatter.ofPattern("ddMMyyyy"));
+        this.DataVencimento = (dataVencimentostring == null || dataVencimentostring.isEmpty())
+                ? null
+                : LocalDate.parse(dataVencimentostring, DateTimeFormatter.ofPattern("ddMMyyyy"));
         this.prioridadeTarefa = PrioridadeTarefa.valueOf(prioridadeTarefastring.toUpperCase());
-        
+        this.statusConclusao = StatusConclusao.valueOf(statusConclusaostring.toUpperCase());
     }
 
     public String getTitulo() {
@@ -45,16 +47,16 @@ public abstract class TarefasCaracteristicas {
         return statusConclusao;
     }
 
-    public void setStatusConclusao(StatusConclusao statusConclusao) {
-        this.statusConclusao = statusConclusao;
+    public void setStatusConclusao(String statusConclusao) {
+        this.prioridadeTarefa = PrioridadeTarefa.valueOf(statusConclusao.toUpperCase());
     }
 
     public PrioridadeTarefa getPrioridadeTarefa() {
         return prioridadeTarefa;
     }
 
-    public void setPrioridadeTarefa(PrioridadeTarefa prioridadeTarefa) {
-        this.prioridadeTarefa = prioridadeTarefa;
+    public void setPrioridadeTarefa(String prioridadeTarefa) {
+        this.prioridadeTarefa = PrioridadeTarefa.valueOf(prioridadeTarefa.toUpperCase());
     }
 
     @Override
@@ -62,7 +64,7 @@ public abstract class TarefasCaracteristicas {
         return "Titulo: " + Titulo +
                 "\nDescrição: " + Descricao +
                 "\nDataVencimento: " + DataVencimento +
-                "\nStatus de Conclusao: " + statusConclusao +
-                "\nPriorida da Tarefa: " + prioridadeTarefa;
+                "\nPriorida da Tarefa: " + prioridadeTarefa+
+                "\nStatus de Conclusao: " + statusConclusao;
     }
 }
