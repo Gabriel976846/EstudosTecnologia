@@ -199,14 +199,29 @@ public class MainTarefas {
                         System.out.println("Tem apenas uma tarefa registrada");
                         listatarefas.forEach(System.out::println);
                     } else {
-                        System.out.println("Deseja ver as Tarefas por: \n1 - Data \n2 - Prioridade \n3 - Status");
+                        System.out.println("Deseja ver as Tarefas por: \n1 - Prioridade \n2 - Status \n3 - Data");
                         System.out.println("Escolha: ");
                         int escolhavisualizacaotarefa = caixadeentrada.nextInt();
 
                         switch (escolhavisualizacaotarefa){
                             case 1:
-                                
+                                System.out.println("Tarefas com quais prioridades deseja vizualizar? ");
+                                System.out.println("Prioridade: \n1 - Alta \n2 - Media \n3 - Baixa");
+                                System.out.print("Escolha: ");
+                                int escolhaprioridadevizualizacao = caixadeentrada.nextInt();
+
+                                switch (escolhaprioridadevizualizacao){
+                                    case 1:
+                                        
+                                    break;
+                                }
                             break;
+                            case 2:
+
+                            break;
+                            default:
+                                System.out.println("Digite um valor valido");
+                                break;
                         }
                     }
 
@@ -227,6 +242,7 @@ public class MainTarefas {
                         if (escolhatarefaedicao > listatarefas.size() || escolhatarefaedicao < 1) {
                             System.out.println("Você digitou um valor invalido");
                         } else {
+                            escolhatarefaedicao = escolhatarefaedicao -1;
                             System.out.println("Qual informação deseja mudar?");
                             System.out.println("1 - Titulo \n2 - Descriçao \n3 - Validade \n4 - Prioridade \n5 - Status \n");
                             System.out.print("Escolha: ");
