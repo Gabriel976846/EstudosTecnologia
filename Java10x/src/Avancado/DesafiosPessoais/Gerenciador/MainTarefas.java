@@ -4,11 +4,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.IntStream;
 
+import static java.lang.String.*;
+
 public class MainTarefas {
     public static void main(String[] args) {
         Scanner caixadeentrada = new Scanner(System.in);
         List<TarefasCaracteristicas> listatarefas = new LinkedList<>();
 
+        
         while (true) {
             System.out.println("======= Gerenciador de Tarefas =======");
             System.out.println("1 - Adicionar Tarefas");
@@ -205,23 +208,27 @@ public class MainTarefas {
 
                         switch (escolhavisualizacaotarefa){
                             case 1:
-                                System.out.println("Tarefas com quais prioridades deseja vizualizar? ");
-                                System.out.println("Prioridade: \n1 - Alta \n2 - Media \n3 - Baixa");
-                                System.out.print("Escolha: ");
-                                int escolhaprioridadevizualizacao = caixadeentrada.nextInt();
-
-                                switch (escolhaprioridadevizualizacao){
-                                    case 1:
-                                        
-                                    break;
-                                }
+                                listatarefas.stream()
+                                        .sorted(Comparator.comparing(TarefasCaracteristicas::getPrioridadeTarefa))
+                                        .map(t -> t.getTitulo() + " - " + t.getPrioridadeTarefa())
+                                        .forEach(System.out::println);
                             break;
                             case 2:
-
+                                listatarefas.stream()
+                                        .sorted(Comparator.comparing(TarefasCaracteristicas::getStatusConclusao).reversed())
+                                        .map(t -> t.getTitulo() + " - " + t.getStatusConclusao())
+                                        .forEach(System.out::println);
                             break;
+                            case 3:
+                                listatarefas.stream()
+                                        .sorted(Comparator.comparing(TarefasCaracteristicas::getDataVencimento))
+                                        .map(t -> t.getTitulo() + " - " + t.getDataVencimento())
+                                        .forEach(System.out::println);
+                            break;
+
                             default:
                                 System.out.println("Digite um valor valido");
-                                break;
+                            break;
                         }
                     }
 
@@ -249,7 +256,6 @@ public class MainTarefas {
                             int escolhaedicaoinformacaodatarefa = caixadeentrada.nextInt();
 
                             switch (escolhaedicaoinformacaodatarefa) {
-
                                 case 1:
                                     caixadeentrada.nextLine();
                                     System.out.print("Titulo Novo:  ");
